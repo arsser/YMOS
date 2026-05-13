@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YMOS Dashboard · 2026-05-09</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      background: #f5f5f0;
+      color: #1a1a1a;
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 24px; background: #1a1a1a; color: #f5f5f0; border-radius: 12px; margin-bottom: 20px;
+    }
+    .topbar h1 { margin: 0; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.02em; }
+    .topbar .date { font-size: 0.95rem; opacity: 0.9; }
+    .card {
+      background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .card h2 { margin: 0 0 16px; font-size: 1.15rem; border-bottom: 1px solid #e8e8e0; padding-bottom: 10px; }
+    .card p, .card li { font-size: 15px; }
+    .overview { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; }
+    .light { display: flex; align-items: center; gap: 12px; }
+    .light .emoji { font-size: 2rem; line-height: 1; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+    .badge-y { background: #fff3cd; color: #856404; }
+    .workflow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+    @media (max-width: 768px) { .workflow { grid-template-columns: repeat(2, 1fr); } }
+    .wf-step {
+      border-radius: 10px; padding: 14px; text-align: center; font-size: 14px; line-height: 1.5;
+    }
+    .wf-done { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .wf-pending { background: #e9ecef; color: #495057; border: 1px solid #dee2e6; }
+    .wf-step code { display: block; margin-top: 8px; font-size: 12px; word-break: break-all; }
+    .wf-foot { margin-top: 12px; font-size: 14px; color: #555; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; vertical-align: top; }
+    th { background: #fafaf8; font-weight: 600; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 768px) { .split { grid-template-columns: 1fr; } }
+    .do-dont h3 { margin: 0 0 10px; font-size: 15px; }
+    .do-dont ul { margin: 0; padding-left: 1.2em; }
+    .action-row {
+      display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid #f0f0eb;
+    }
+    .action-row:last-child { border-bottom: none; }
+    .tag { flex-shrink: 0; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; color: #fff; }
+    .tag-p0 { background: #c0392b; }
+    .tag-p1 { background: #e67e22; }
+    .tag-p2 { background: #7f8c8d; }
+    .hold-row { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid #f0f0eb; flex-wrap: wrap; }
+    .hold-row:last-child { border-bottom: none; }
+    .hold-meta { font-size: 14px; color: #555; max-width: 520px; }
+    footer { text-align: center; font-size: 13px; color: #777; padding: 24px 0 8px; }
+    .muted { color: #666; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <h1>YMOS │ 投资操作系统</h1>
+      <div class="date">2026-05-09</div>
+    </header>
+
+    <section class="card">
+      <h2>状态概览</h2>
+      <div class="overview">
+        <div class="light">
+          <span class="emoji" aria-hidden="true">🟡</span>
+          <div>
+            <div><span class="badge badge-y">有待确认</span></div>
+            <p class="muted" style="margin:8px 0 0;">备忘录与港股报价仍有缺口；无 ±5% 紧急链。</p>
+          </div>
+        </div>
+        <div><strong>持仓数量</strong>：3 只（A 股）<br /><span class="muted">Watchlist：2</span></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>每日工作流</h2>
+      <div class="workflow">
+        <div class="wf-step wf-done">✅ 市场洞察<br /><span class="muted">2026-05-08 已完成</span><code>跑一下市场洞察</code></div>
+        <div class="wf-step wf-done">✅ 投资雷达<br /><span class="muted">2026-05-08 已完成</span><code>跑一下投资雷达</code></div>
+        <div class="wf-step wf-done">✅ 策略分析<br /><span class="muted">2026-05-08 已完成</span><code>跑一下策略分析</code></div>
+        <div class="wf-step wf-done">✅ 持仓收口<br /><span class="muted">2026-05-09 已完成</span><code>收口一下</code></div>
+      </div>
+      <p class="wf-foot">已完成 <strong>4/4</strong>（前三步对应数据日 <strong>2026-05-08</strong>；今日执行收口与看板刷新）。</p>
+    </section>
+
+    <section class="card">
+      <h2>战略简报（市场洞察摘要）</h2>
+      <p><strong>市场体温</strong>：Chaos（混沌）<br />
+      <strong>一句话</strong>：美中议程或挤出关税/稀土窗口；AI 侧「资本密度」与「出口合规」并行；联储路径与非农窗口叠加，宜多情景管理。</p>
+      <table>
+        <thead><tr><th>信号类型</th><th>核心主题</th><th>研判结论（压缩）</th></tr></thead>
+        <tbody>
+          <tr><td>🧭 主题收敛</td><td>地缘议程 vs 贸易</td><td>峰会伊朗议题或推迟关税/稀土节奏；与核协议概率文本同屏，双情景管理。</td></tr>
+          <tr><td>⚡ 高影响异常</td><td>AI 供给侧</td><td>巨额融资传闻 + 巨型制造资本开支叙事并行，信息密度高、波动敏感。</td></tr>
+          <tr><td>🎚️ 认知温差</td><td>宏观 vs 微观</td><td>缓和预期与制造端承压叙事可能分化到行业层面。</td></tr>
+          <tr><td>🧱 深度基石</td><td>黄金—油价</td><td>慢变量阅读材料，非单日交易结论。</td></tr>
+          <tr><td>🛰️ 合规外溢</td><td>硬件转运调查</td><td>出口管制链条高敏，牵动供应链预期。</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">来源：`Eyes/市场洞察/2026-05/2026-05-08_市场洞察.md`（RSS 部分源超时，欧系拼图偏弱）。</p>
+    </section>
+
+    <section class="card">
+      <h2>晨会速览（来自备忘录视图）</h2>
+      <div class="split do-dont">
+        <div>
+          <h3>今天必须做的事</h3>
+          <ul>
+            <li><strong>P0</strong>：0700 港元收盘价 — 券商终端复核（Yahoo 403）。</li>
+            <li><strong>P1</strong>：五粮液 H1/H2/H3 手写定稿。</li>
+            <li><strong>P1</strong>：601061 T1 或 T2 一行数字。</li>
+            <li><strong>P1</strong>：特力 A L1–L4 勾选落地。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>今天不要做的事</h3>
+          <ul>
+            <li>无备忘录规则下 <strong>情绪化补仓</strong>（尤其遗留仓）。</li>
+            <li>未读披露即 <strong>追高 301308</strong>（路由仍为 🟡）。</li>
+            <li>无港元可靠报价下 <strong>拍脑袋建仓 0700</strong>。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>需要你做的事</h2>
+      <div class="action-row"><span class="tag tag-p0">P0</span><div>录入 <strong>0700.HK</strong> 券商港元收盘 → 再谈「我想买 / 建仓」。</div><div class="muted">0700</div></div>
+      <div class="action-row"><span class="tag tag-p1">P1</span><div><strong>000858</strong>：备忘录 H1/H2/H3 定稿 + 批价核对。</div><div class="muted">五粮液</div></div>
+      <div class="action-row"><span class="tag tag-p1">P1</span><div><strong>601061</strong>：止盈/回撤规则写死（T1 或 T2）。</div><div class="muted">中信金属</div></div>
+      <div class="action-row"><span class="tag tag-p1">P1</span><div><strong>000025</strong>：L1–L4 落地。</div><div class="muted">特力 A</div></div>
+      <div class="action-row"><span class="tag tag-p2">P2</span><div><strong>301308</strong>：巨潮/交易所披露核对。</div><div class="muted">江波龙</div></div>
+    </section>
+
+    <section class="card">
+      <h2>持仓一览</h2>
+      <div class="hold-row">
+        <div><strong>五粮液</strong> 000858.SZ · 遗留仓 · PVE 框架</div>
+        <div class="hold-meta">¥92.13（2026-05-08）；弱修复后再走弱；H 路径待写死。</div>
+      </div>
+      <div class="hold-row">
+        <div><strong>特力 A</strong> 000025.SZ · 遗留仓 · 混合战场</div>
+        <div class="hold-meta">¥16.05（2026-05-08）；L1–L4 待填；不加仓为默认。</div>
+      </div>
+      <div class="hold-row">
+        <div><strong>中信金属</strong> 601061.SS · 盈利仓 · 周期</div>
+        <div class="hold-meta">¥14.65（2026-05-08）；温和走强；T1–T4 待写死。</div>
+      </div>
+    </section>
+
+    <footer>YMOS Dashboard · 数据截至 2026-05-09 22:48 · 真相源见 `持仓_状态机.md` / `持仓备忘录_视图.md`</footer>
+  </div>
+</body>
+</html>
